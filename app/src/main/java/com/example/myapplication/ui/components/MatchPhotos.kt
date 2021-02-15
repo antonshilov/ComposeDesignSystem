@@ -12,15 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawShadow
-import androidx.compose.ui.drawLayer
-import androidx.compose.ui.graphics.ImageAsset
-import androidx.compose.ui.graphics.vector.VectorAsset
-import androidx.compose.ui.platform.DensityAmbient
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
-import androidx.ui.tooling.preview.Preview
 import com.example.myapplication.R
 import com.example.myapplication.samples.PreviewBackground
 import com.example.myapplication.ui.theme.Colors
@@ -28,9 +28,9 @@ import com.example.myapplication.ui.theme.Dimensions
 
 @Composable
 fun MatchPhotos(
-    leftPhoto: ImageAsset,
-    rightPhoto: ImageAsset,
-    badge: VectorAsset,
+    leftPhoto: ImageBitmap,
+    rightPhoto: ImageBitmap,
+    badge: ImageVector,
     modifier: Modifier = Modifier
 ) {
     val photoSize = Dimensions.tokenMatchPhotosPhotoSize
@@ -38,7 +38,7 @@ fun MatchPhotos(
     val photoCornerRadius = photoSize * Dimensions.tokenMatchPhotosCornerRadius
     val photoShape = RoundedCornerShape(photoCornerRadius)
     val iconSize = photoSize * Dimensions.tokenMatchPhotosIconSize
-    val photoSizePx = with(DensityAmbient.current) { photoSize.toPx() }
+    val photoSizePx = with(LocalDensity.current) { photoSize.toPx() }
     val leftTranslateX = photoSizePx * Dimensions.tokenMatchPhotosLeftTranslateX
     val leftTranslateY = photoSizePx * Dimensions.tokenMatchPhotosLeftTranslateY
     val rightTranslateX = photoSizePx * Dimensions.tokenMatchPhotosRightTranslateX
@@ -47,9 +47,9 @@ fun MatchPhotos(
     Column(modifier = modifier) {
         Row {
             Image(
-                asset = leftPhoto,
+                bitmap = leftPhoto,
                 modifier = Modifier
-                    .drawLayer(
+                    .graphicsLayer(
                         rotationZ = -rotationDegrees,
                         translationX = leftTranslateX,
                         translationY = leftTranslateY
@@ -61,14 +61,15 @@ fun MatchPhotos(
                         Colors.matchPhotosBorder,
                         photoShape
                     )
-                    .padding(Dimensions.tokenMatchPhotosBorderWidth/2)
-                    .clip(photoShape)
+                    .padding(Dimensions.tokenMatchPhotosBorderWidth / 2)
+                    .clip(photoShape),
+                contentDescription = null
 
             )
             Image(
-                asset = rightPhoto,
+                bitmap = rightPhoto,
                 modifier = Modifier
-                    .drawLayer(
+                    .graphicsLayer(
                         clip = false,
                         rotationZ = rotationDegrees,
                         translationX = rightTranslateX,
@@ -81,20 +82,22 @@ fun MatchPhotos(
                         Colors.matchPhotosBorder,
                         photoShape
                     )
-                    .padding(Dimensions.tokenMatchPhotosBorderWidth/2)
-                    .clip(photoShape)
+                    .padding(Dimensions.tokenMatchPhotosBorderWidth / 2)
+                    .clip(photoShape),
+                contentDescription = null
             )
 
         }
         Image(
-            asset = badge,
+            imageVector = badge,
             modifier = Modifier
                 .size(iconSize)
                 .align(Alignment.CenterHorizontally)
-                .drawShadow(
+                .shadow(
                     elevation = Dimensions.tokenMatchPhotosBadgeElevation,
                     shape = CircleShape
-                )
+                ),
+            contentDescription = null
         )
 
     }

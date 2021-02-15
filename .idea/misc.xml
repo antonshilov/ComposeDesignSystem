@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/compose-model-1613140249893.xml" value="0.5" />
+        <entry key="../../../../layout/compose-model-1613140337473.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1613140504384.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1613140667272.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1613317902290.xml" value="0.5" />
+        <entry key="../../../../layout/compose-model-1613317905125.xml" value="0.16944444444444445" />
+        <entry key="../../../../layout/compose-model-1613318332914.xml" value="0.16574074074074074" />
+        <entry key="../../../../layout/compose-model-1613318713664.xml" value="0.37557603686635943" />
+        <entry key="../../../../layout/compose-model-1613318822353.xml" value="0.37557603686635943" />
+        <entry key="../../../../layout/compose-model-1613319082291.xml" value="0.4393530997304582" />
+        <entry key="../../../../layout/compose-model-1613319094138.xml" value="0.4004914004914005" />
+        <entry key="../../../../layout/compose-model-1613319869685.xml" value="0.6025878003696857" />
+        <entry key="../../../../layout/compose-model-1613319965730.xml" value="0.5" />
+        <entry key="../../../../layout/compose-model-1613319965732.xml" value="0.30185185185185187" />
+        <entry key="../../../../layout/compose-model-1613320159319.xml" value="0.37557603686635943" />
+        <entry key="../../../../layout/compose-model-1613320460000.xml" value="0.39371980676328505" />
+        <entry key="../../../../layout/compose-model-1613324762359.xml" value="0.4004914004914005" />
+        <entry key="../../../../layout/compose-model-1613395797076.xml" value="0.4393530997304582" />
+        <entry key="../../../../layout/compose-model-1613395906358.xml" value="0.4780058651026393" />
+        <entry key="../../../../layout/compose-model-1613396028290.xml" value="0.37557603686635943" />
+        <entry key="../../../../layout/compose-model-1613396074613.xml" value="0.30185185185185187" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

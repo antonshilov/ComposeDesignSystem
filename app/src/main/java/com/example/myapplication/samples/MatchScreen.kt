@@ -1,19 +1,19 @@
 package com.example.myapplication.samples
 
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageAsset
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.R
 import com.example.myapplication.ui.components.Button
 import com.example.myapplication.ui.components.CtaBox
@@ -45,9 +45,9 @@ fun PreviewCtaBoxBumble() {
 
 
 data class MatchConfig(
-    val firstUserPhoto: ImageAsset,
-    val secondUserPhoto: ImageAsset,
-    val badge: VectorAsset,
+    val firstUserPhoto: ImageBitmap,
+    val secondUserPhoto: ImageBitmap,
+    val badge: ImageVector,
     val header: String,
     val content: String,
     val ctaText: String

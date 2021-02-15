@@ -2,6 +2,7 @@ package com.example.myapplication.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 
 data class DimensionTokens(
@@ -27,7 +28,7 @@ data class DimensionTokens(
     val tokenMatchPhotosBorderWidth: Dp
 )
 
-val AmbientDimensions = staticAmbientOf<DimensionTokens>()
+val AmbientDimensions = staticCompositionLocalOf<DimensionTokens>()
 
 @Composable
 val Dimensions: DimensionTokens

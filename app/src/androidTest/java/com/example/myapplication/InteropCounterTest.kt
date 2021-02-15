@@ -1,12 +1,12 @@
 package com.example.myapplication
 
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.ui.test.createComposeRule
 import com.example.myapplication.samples.ViewComposeInterop
 import org.junit.Rule
 import org.junit.Test

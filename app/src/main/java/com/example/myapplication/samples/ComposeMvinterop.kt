@@ -1,17 +1,17 @@
 package com.example.myapplication.samples
 
 import android.widget.TextView
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.ui.tooling.preview.Preview
 import com.badoo.mvicore.element.Reducer
 import com.badoo.mvicore.feature.BaseFeature
 import com.badoo.mvicore.feature.ReducerFeature
@@ -44,7 +44,7 @@ fun ComposeMviInterop() {
     val counterFeature = remember { CounterFeature() }
     val counterState = counterFeature.subscribeAsState(CounterFeature.State())
     val count = counterState.value.counter
-    val context = ContextAmbient.current
+    val context = LocalContext.current
 
     val textView = remember {
         TextView(context).apply {

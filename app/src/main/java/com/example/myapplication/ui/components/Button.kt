@@ -1,9 +1,7 @@
 package com.example.myapplication.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.InteractionState
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.Arrangement
@@ -16,21 +14,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Surface
-import androidx.compose.material.ripple.RippleIndication
+import androidx.compose.material.Text
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawOpacity
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.example.myapplication.R
 import com.example.myapplication.samples.PreviewBackground
 import com.example.myapplication.ui.theme.Colors
@@ -44,7 +45,7 @@ fun Button(
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
     contentColor: Color = Color.White,
-    icon: VectorAsset? = null,
+    icon: ImageVector? = null,
     enabled: Boolean = true
 ) {
     ButtonSkeleton(
@@ -63,7 +64,7 @@ fun StrokeButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
-    icon: VectorAsset? = null,
+    icon: ImageVector? = null,
     text: String,
     enabled: Boolean = true
 ) {
@@ -85,7 +86,7 @@ fun TransparentButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
-    icon: VectorAsset? = null,
+    icon: ImageVector? = null,
     text: String,
     enabled: Boolean = true
 ) {
@@ -178,7 +179,7 @@ private fun ButtonSkeleton(
         bottom = Dimensions.tokenButtonPaddingVertical
     ),
     height: Dp = Dimensions.tokenButtonHeight,
-    icon: VectorAsset?,
+    icon: ImageVector?,
 ) {
     val interactionState = remember { InteractionState() }
     Surface(
@@ -187,19 +188,21 @@ private fun ButtonSkeleton(
         contentColor = contentColor,
         border = border,
         modifier =
-            modifier.clickable(
+        modifier
+            .clickable(
                 onClick = onClick,
                 enabled = enabled,
                 interactionState = interactionState,
                 indication = null
-            ).drawOpacity(
+            )
+            .alpha(
                 if (enabled) 1f else Dimensions.tokenButtonDisabledOpacity
             )
     ) {
         Row(
             Modifier
                 .defaultMinSizeConstraints(minHeight = height)
-                .indication(interactionState, RippleIndication())
+                .indication(interactionState, rememberRipple())
                 .padding(contentPadding),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
@@ -207,8 +210,9 @@ private fun ButtonSkeleton(
             if (icon != null) {
                 Icon(
                     modifier = Modifier.size(Dimensions.tokenButtonIconSize),
-                    asset = icon,
-                    tint = contentColor
+                    imageVector = icon,
+                    tint = contentColor,
+                    contentDescription = null
                 )
                 Spacer(modifier = Modifier.width(Dimensions.tokenButtonIconTextSpacing))
             }

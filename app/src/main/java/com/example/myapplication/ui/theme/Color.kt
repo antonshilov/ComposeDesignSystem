@@ -2,6 +2,7 @@ package com.example.myapplication.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 data class ColorTokens(
     val primary: Color,
@@ -9,7 +10,7 @@ data class ColorTokens(
     //...
 )
 
-val AmbientColors = staticAmbientOf<ColorTokens>()
+val AmbientColors = staticCompositionLocalOf<ColorTokens>()
 
 @Composable
 val Colors: ColorTokens
