@@ -1,7 +1,7 @@
 package com.example.myapplication.ui.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -170,10 +170,10 @@ fun Theme(
     dimensions: DimensionTokens,
     content: @Composable () -> Unit
 ) {
-    Providers(
-        AmbientTypography provides typography,
-        AmbientColors provides colors,
-        AmbientDimensions provides dimensions,
+    CompositionLocalProvider(
+        LocalTypography provides typography,
+        LocalColors provides colors,
+        LocalDimensions provides dimensions,
     ) {
         content()
     }

@@ -12,13 +12,12 @@ import com.example.myapplication.R
 
 @Composable
 fun ViewComposeInterop() {
-
     val count = remember { mutableStateOf(0) }
 
     Column {
         Text(text = "Compose Text Count = ${count.value}")
         AndroidView(
-            viewBlock = { context ->
+            factory = { context ->
                 TextView(context).apply {
                     setOnClickListener {
                         count.value = count.value + 1
@@ -27,7 +26,7 @@ fun ViewComposeInterop() {
                     contentDescription = "CounterAndroidView"
                 }
             },
-            update = { view ->
+            update = { view: TextView ->
                 view.text = "Hello From AndroidViews World! Count = ${count.value}"
             }
         )

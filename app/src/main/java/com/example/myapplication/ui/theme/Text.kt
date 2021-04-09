@@ -4,7 +4,7 @@ import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,18 +45,18 @@ private fun textStyles(): List<TextStyle> = with(TextStyles) {
 
 @Immutable
 data class Typography(
-    val H1: TextStyle,
-    val H2: TextStyle,
-    val Action: TextStyle,
-    val Title: TextStyle,
-    val P1: TextStyle,
-    val P2: TextStyle,
-    val P3: TextStyle
+    val H1: TextStyle = TextStyle.Default,
+    val H2: TextStyle = TextStyle.Default,
+    val Action: TextStyle = TextStyle.Default,
+    val Title: TextStyle = TextStyle.Default,
+    val P1: TextStyle = TextStyle.Default,
+    val P2: TextStyle = TextStyle.Default,
+    val P3: TextStyle = TextStyle.Default
 )
 
 
-val AmbientTypography = staticAmbientOf<Typography>()
+val LocalTypography = staticCompositionLocalOf { Typography() }
 
-@Composable
 val TextStyles: Typography
-    get() = AmbientTypography.current
+    @Composable
+    get() = LocalTypography.current

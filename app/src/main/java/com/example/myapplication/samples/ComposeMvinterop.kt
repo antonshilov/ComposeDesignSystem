@@ -64,7 +64,7 @@ fun ComposeMviInterop() {
             })
         )
         AndroidView(
-            viewBlock = { textView },
+            factory = { textView },
             update = { view ->
                 view.text = "Hello From AndroidViews World! Count = ${count}"
             }

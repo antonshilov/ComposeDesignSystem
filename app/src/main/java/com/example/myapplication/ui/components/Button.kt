@@ -1,18 +1,10 @@
 package com.example.myapplication.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.InteractionState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.indication
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSizeConstraints
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -25,9 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -45,7 +36,7 @@ fun Button(
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
     contentColor: Color = Color.White,
-    icon: ImageVector? = null,
+    icon: Painter? = null,
     enabled: Boolean = true
 ) {
     ButtonSkeleton(
@@ -64,7 +55,7 @@ fun StrokeButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
-    icon: ImageVector? = null,
+    icon: Painter? = null,
     text: String,
     enabled: Boolean = true
 ) {
@@ -86,7 +77,7 @@ fun TransparentButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     color: Color = Colors.primary,
-    icon: ImageVector? = null,
+    icon: Painter? = null,
     text: String,
     enabled: Boolean = true
 ) {
@@ -110,7 +101,7 @@ fun PreviewFilledButton() {
             Button(
                 onClick = {},
                 text = "Mobius rules",
-                icon = vectorResource(id = R.drawable.ic_autorenew),
+                icon = painterResource(id = R.drawable.ic_autorenew),
                 modifier = Modifier.padding(16.dp),
             )
             Button(
@@ -130,7 +121,7 @@ fun PreviewOutlined() {
             StrokeButton(
                 onClick = {},
                 text = "Mobius rules",
-                icon = vectorResource(id = R.drawable.ic_autorenew),
+                icon = painterResource(id = R.drawable.ic_autorenew),
                 modifier = Modifier.padding(16.dp)
             )
             StrokeButton(
@@ -150,7 +141,7 @@ fun PreviewTransparent() {
             TransparentButton(
                 onClick = {},
                 text = "Mobius rules",
-                icon = vectorResource(id = R.drawable.ic_autorenew),
+                icon = painterResource(id = R.drawable.ic_autorenew),
                 modifier = Modifier.padding(16.dp)
             )
             TransparentButton(
@@ -179,9 +170,9 @@ private fun ButtonSkeleton(
         bottom = Dimensions.tokenButtonPaddingVertical
     ),
     height: Dp = Dimensions.tokenButtonHeight,
-    icon: ImageVector?,
+    icon: Painter?,
 ) {
-    val interactionState = remember { InteractionState() }
+    val interactionState = remember { MutableInteractionSource() }
     Surface(
         shape = shape,
         color = backgroundColor,
@@ -192,7 +183,7 @@ private fun ButtonSkeleton(
             .clickable(
                 onClick = onClick,
                 enabled = enabled,
-                interactionState = interactionState,
+                interactionSource = interactionState,
                 indication = null
             )
             .alpha(
@@ -201,7 +192,7 @@ private fun ButtonSkeleton(
     ) {
         Row(
             Modifier
-                .defaultMinSizeConstraints(minHeight = height)
+                .defaultMinSize(minHeight = height)
                 .indication(interactionState, rememberRipple())
                 .padding(contentPadding),
             horizontalArrangement = Arrangement.Center,
@@ -210,7 +201,7 @@ private fun ButtonSkeleton(
             if (icon != null) {
                 Icon(
                     modifier = Modifier.size(Dimensions.tokenButtonIconSize),
-                    imageVector = icon,
+                    painter = icon,
                     tint = contentColor,
                     contentDescription = null
                 )

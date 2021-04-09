@@ -13,12 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
 import com.example.myapplication.R
@@ -28,9 +26,9 @@ import com.example.myapplication.ui.theme.Dimensions
 
 @Composable
 fun MatchPhotos(
-    leftPhoto: ImageBitmap,
-    rightPhoto: ImageBitmap,
-    badge: ImageVector,
+    leftPhoto: Painter,
+    rightPhoto: Painter,
+    badge: Painter,
     modifier: Modifier = Modifier
 ) {
     val photoSize = Dimensions.tokenMatchPhotosPhotoSize
@@ -47,7 +45,7 @@ fun MatchPhotos(
     Column(modifier = modifier) {
         Row {
             Image(
-                bitmap = leftPhoto,
+                painter = leftPhoto,
                 modifier = Modifier
                     .graphicsLayer(
                         rotationZ = -rotationDegrees,
@@ -67,7 +65,7 @@ fun MatchPhotos(
 
             )
             Image(
-                bitmap = rightPhoto,
+                painter = rightPhoto,
                 modifier = Modifier
                     .graphicsLayer(
                         clip = false,
@@ -89,7 +87,7 @@ fun MatchPhotos(
 
         }
         Image(
-            imageVector = badge,
+            painter = badge,
             modifier = Modifier
                 .size(iconSize)
                 .align(Alignment.CenterHorizontally)
@@ -108,9 +106,9 @@ fun MatchPhotos(
 fun PreviewMatchPhotos() {
     PreviewBackground {
         MatchPhotos(
-            leftPhoto = imageResource(R.drawable.image1),
-            rightPhoto = imageResource(R.drawable.image2),
-            badge = vectorResource(R.drawable.ic_match_badoo)
+            leftPhoto = painterResource(R.drawable.image1),
+            rightPhoto = painterResource(R.drawable.image2),
+            badge = painterResource(R.drawable.ic_match_badoo)
         )
     }
 }
