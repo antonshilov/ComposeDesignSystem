@@ -1,7 +1,7 @@
 package com.example.myapplication.ui.theme
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
