@@ -1,19 +1,17 @@
 package com.example.myapplication.samples
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
 import com.example.myapplication.ui.components.Button
 import com.example.myapplication.ui.components.CtaBox
@@ -21,16 +19,14 @@ import com.example.myapplication.ui.components.MatchPhotos
 import com.example.myapplication.ui.theme.BadooTheme
 import com.example.myapplication.ui.theme.BumbleTheme
 import com.example.myapplication.ui.theme.Colors
-import com.example.myapplication.ui.theme.Spacing
 import com.example.myapplication.ui.theme.TextStyles
-
 
 @Preview
 @Composable
 fun PreviewCtaBoxBadoo() {
     BadooTheme {
         MatchScreen(
-            config = matchConfig().copy(badge = vectorResource(R.drawable.ic_match_badoo))
+            config = matchConfig().copy(badge = painterResource(R.drawable.ic_match_badoo))
         )
     }
 }
@@ -45,9 +41,9 @@ fun PreviewCtaBoxBumble() {
 
 
 data class MatchConfig(
-    val firstUserPhoto: ImageBitmap,
-    val secondUserPhoto: ImageBitmap,
-    val badge: ImageVector,
+    val firstUserPhoto: Painter,
+    val secondUserPhoto: Painter,
+    val badge: Painter,
     val header: String,
     val content: String,
     val ctaText: String
@@ -55,9 +51,9 @@ data class MatchConfig(
 
 @Composable
 fun matchConfig() = MatchConfig(
-    firstUserPhoto = imageResource(R.drawable.image1),
-    secondUserPhoto = imageResource(R.drawable.image2),
-    badge = vectorResource(R.drawable.ic_match_bumble),
+    firstUserPhoto = painterResource(R.drawable.image1),
+    secondUserPhoto = painterResource(R.drawable.image2),
+    badge = painterResource(R.drawable.ic_match_bumble),
     header = "You have a new match!",
     content = "Hugo matched with you while you were away. Now’s the perfect time to send them a message",
     ctaText = "Send Message"

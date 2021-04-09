@@ -2,28 +2,19 @@ package com.example.myapplication.samples
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -71,11 +62,11 @@ fun SlotApi() {
     }
 }
 
-val LocalHeartColor = compositionLocalOf<Color>()
+val LocalHeartColor = compositionLocalOf { Color.Red }
 
 @Composable
 fun HeartsScreen() {
-    Providers(
+    CompositionLocalProvider(
         LocalHeartColor provides Color.Red
     ) {
         LocalHeartColor.current // I can access color here
@@ -114,13 +105,13 @@ fun ColorSamples() {
     PreviewBackground {
         Column {
             Image(
-                imageResource(id = R.drawable.image1),
+                painter = painterResource(id = R.drawable.image1),
                 modifier = Modifier.size(128.dp),
                 contentDescription = null
             )
             Spacer(modifier = Modifier.size(16.dp))
             Image(
-                vectorResource(id = R.drawable.ic_match_badoo),
+                painter = painterResource(id = R.drawable.ic_match_badoo),
                 modifier = Modifier.size(128.dp),
                 contentDescription = null
             )
